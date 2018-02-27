@@ -1,0 +1,83 @@
+html, body {
+  background: white;
+  height: 100%;
+  width: 100%;
+}
+#header{
+  padding:10px 10px 0px 10px;
+}
+.button_search{
+    border: none;
+    height: 38px;
+    background: #42afe3;
+    padding: 10px 22px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background .5s ease;
+}
+.button_search:hover {
+      background: lighten(#42afe3, 20%);
+}
+
+*{
+  font-family: sans-serif;
+  font-size: 12pt;
+}
+
+input{
+    display: flex;
+    width: auto;
+    height: 20px;
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.inp_search{
+  display: inline;
+  margin: 10px;
+}
+
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 10px;
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+    background-color: #f5f5f5;
+    
+    .text {
+      padding: 10px 15px;
+      width:10%;
+    }
+    
+    .delete {
+      border-radius: 3px;
+      padding: 10px 22px;
+      background: darkred;
+      color: white;
+      letter-spacing: 2px;
+      font-weight: 600;
+      font-size: 14px;
+      text-transform: uppercase;
+      transition: background .5s ease;
+    }
+    .delete:hover {
+      background: lighten(darkred, 20%);
+    }
+  }
+}
