@@ -1,56 +1,8 @@
-//var searchText = '';
 class Todo {
   constructor(title, description, isDone){
     this.title = title;
     this.description = description;
     this.isDone = isDone;
-  }
-}
-
-class TodoList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      items: [],
-      allItems: [
-        new Todo ('Todo 1', 'Description 1', false),
-        new Todo ('Todo 2', 'Description 2', true),
-        new Todo ('Todo 3', 'Description 3', false)
-      ]
-    };
-    
-    console.log('in todoList constr: ' + searchText);
-    for(let i=0; i < this.state.allItems.length; i++){
-      if(searchText == '' || this.state.allItems[i].contains(searchText)) {
-        console.log("yes");
-          this.state.items.push(this.state.allItems[i]);
-      }
-      else {
-        console.log("no");
-      }
-    }
-  }
-  
-  addItem = (item => {
-    let newItems = this.state.items;
-    newItems.push(item);
-    this.setState({items: newItems});
-  });
-  
-  deleteItem = (idx => {
-    let newItems = this.state.items;
-    newItems.splice(idx, 1);
-    this.setState({items: newItems});
-  });
-
-  render() {
-    return (
-      <div className="todo-list">
-        <ItemsList
-          items={this.state.items}
-          clickAction={this.deleteItem} />
-      </div>
-    );
   }
 }
 
@@ -76,50 +28,6 @@ class ItemsList extends React.Component {
 }
 
 class App extends React.Component {
-  
-  render() {
-    return (
-        <TodoList />
-    );
-  }
-}
-
-class Search extends React.Component {   
-   constructor() {
-     super();
-     console.log('in search constr: ' + this.state);
-     this.onSetSearch = this.onSetSearch.bind(this);
-     this.state = {search: ''};
-   }
-  
-   onSetSearch() {
-    let text = document.querySelector('input').value;
-    this.state.search = text;
-    searchText = text; 
-    console.log('Set state search = ' + searchText);
-   }
-  
-
- // _handleKeyPress(e, field) {
- //   if (e.keyCode === 13) {
- //    e.preventDefault();
- //    console.log('press Enter');
- //   } 
- //}
-  
-  render() {
-    return (
-      <div>
-        <form>
-          <input className="inp_search" type="text" name="name" placeholder="..." />
-         <button type="button" className="button_search" onClick={this.onSetSearch}>Search</button>
-        </form>
-      </div>
-    );
-  }
-}
-
-class App1 extends React.Component {
    constructor(props) {
      console.log('constructor App');
      super(props);
@@ -183,5 +91,4 @@ class App1 extends React.Component {
     );
   }
 }
-//ReactDOM.render(<Search />, document.getElementById('header'));
-ReactDOM.render(<App1 />, document.getElementById('container'));
+ReactDOM.render(<App />, document.getElementById('container'));
