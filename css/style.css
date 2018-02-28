@@ -4,14 +4,13 @@ html, body {
   width: 100%;
 }
 
-#header {
-  padding: 10px 10px 0px 10px;
+h2 {
+  margin-left: 10px;
 }
 
-.button_search {
+button {
   border: none;
   height: 38px;
-  background: #42afe3;
   padding: 10px 22px;
   border-radius: 3px;
   text-transform: uppercase;
@@ -21,8 +20,67 @@ html, body {
   transition: background .5s ease;
 }
 
+.button_close {
+  float: right;
+  bottom: 10px;
+  right: 10px;
+}
+
+.add_task {
+  float: left;
+  bottom: 10px;
+  background: #673288;
+  color: white;
+}
+
+.footer {
+  margin-top: 30px;
+}
+
+.add_task:hover {
+  background: #9c5dc3;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 50;
+  background-color: rgba(0, 120, 201, 0.5);
+}
+
+.modal {
+  background: white;
+  border-radius: 5px;
+  width: 400px;
+  height: 200px;
+  margin: auto;
+  margin-top: 100px;
+  padding: 30px;
+}
+
+.button_search {
+  display: inline;
+  background: #42afe3;
+}
+
 .button_search:hover {
   background: #9bd5f0;
+}
+
+.button_add {
+  float: right;
+  background: #673288;
+  margin-top: 10px;
+  margin-right: 20px;
+  color: white;
+}
+
+.button_add:hover {
+  background: #9c5dc3;
 }
 
 * {
@@ -38,12 +96,12 @@ input {
   border: 1px solid #ddd;
   border-radius: 3px;
   font-size: 18px;
+  margin: 10px;
   font-weight: 500;
 }
 
 .inp_search {
   display: inline;
-  margin: 10px;
 }
 
 .todo-list {
@@ -54,6 +112,7 @@ input {
 .todo-list ul {
   list-style: none;
   padding: 0;
+  margin-right: 20px;
 }
 .todo-list li {
   display: flex;
@@ -64,7 +123,10 @@ input {
 }
 .todo-list li .text {
   padding: 10px 15px;
-  width: 10%;
+  width: 100px;
+}
+.todo-list li .descr {
+  width: 200px;
 }
 .todo-list li .delete {
   border-radius: 3px;

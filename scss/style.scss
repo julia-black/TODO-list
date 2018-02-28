@@ -3,44 +3,101 @@ html, body {
   height: 100%;
   width: 100%;
 }
-#header{
-  padding:10px 10px 0px 10px;
+
+h2{
+  margin-left:10px;
 }
+
+button{
+  border: none;
+  height: 38px;
+  padding: 10px 22px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background .5s ease;
+}
+
+.button_close {
+  float:right;
+  bottom:10px;
+  right:10px;
+}
+
+.add_task {
+  float:left;
+  bottom:10px;
+  background: #673288;
+  color:white;
+}
+
+.footer{
+  margin-top:30px;
+}
+
+.add_task:hover{
+  background: lighten(#673288, 20%);
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index:1000;
+  padding: 50;
+  background-color: rgba(0, 120, 201, 0.5);
+}
+
+.modal{
+  background: white;
+  border-radius: 5px;
+  width: 400px;
+  height: 200px;
+  margin: auto;
+  margin-top:100px;
+  padding: 30px;
+}
+
 .button_search{
-    border: none;
-    height: 38px;
+    display: inline;
     background: #42afe3;
-    padding: 10px 22px;
-    border-radius: 3px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: 600;
-    font-size: 14px;
-    transition: background .5s ease;
 }
 .button_search:hover {
       background: lighten(#42afe3, 20%);
 }
-
+.button_add {
+   float: right;
+   background: #673288;
+   margin-top: 10px;
+   margin-right: 20px;
+   color:white;
+}
+.button_add:hover {
+      background: lighten(#673288, 20%);
+}
 *{
   font-family: sans-serif;
   font-size: 12pt;
 }
 
 input{
-    display: flex;
-    width: auto;
-    height: 20px;
-    padding: 8px 10px;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    font-size: 18px;
-    font-weight: 500;
+  display: flex;
+  width: auto;
+  height: 20px;
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  font-size: 18px;
+  margin:10px;
+  font-weight: 500;
 }
 
 .inp_search{
   display: inline;
-  margin: 10px;
 }
 
 .todo-list {
@@ -51,6 +108,7 @@ input{
   ul {
     list-style: none;
     padding: 0;
+    margin-right:20px;
   }
   
   li {
@@ -62,7 +120,10 @@ input{
     
     .text {
       padding: 10px 15px;
-      width:10%;
+      width:100px;
+    }
+    .descr {
+      width:200px;
     }
     
     .delete {

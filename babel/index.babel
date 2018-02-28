@@ -1,3 +1,30 @@
+class Modal extends React.Component {
+ 
+  render() {
+    if(!this.props.show) {
+      return null;
+    }
+    return (
+      <div className="backdrop" >
+        <div className="modal">
+          {this.props.children}
+          <form>
+            <input className="inp_add inp_title" placeholder="Title"/>
+            <input className="inp_add inp_description" placeholder="Description"/>
+          </form>
+          <div className="footer">
+            <button className="add_task" onClick={this.props.addNewTask}> Add </button>
+            <button className="button_close" onClick={this.props.onClose}>
+              Close
+            </button>
+            
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
 class Todo {
   constructor(title, description, isDone){
     this.title = title;
@@ -33,6 +60,7 @@ class App extends React.Component {
      super(props);
      this.onSetSearch = this.onSetSearch.bind(this);
      this.state = {
+      isOpen: false,
       searchText: '',
       items: [],
       allItems: [
@@ -42,15 +70,31 @@ class App extends React.Component {
       ]
     };
     for(let i=0; i < this.state.allItems.length; i++){
-    //  if(this.state.searchText == '' || this.state.allItems[i].contains(this.state.searchText))
           this.state.items.push(this.state.allItems[i]);
     }
   }
-  addItem = (item => {
-    let newItems = this.state.items;
-    newItems.push(item);
-    this.setState({items: newItems});
-  });
+  
+  addNewTask = () => {
+    let title = document.querySelector('.inp_title').value;
+    let desc = document.querySelector('.inp_description').value;
+    if(title != ''){
+      let newItem = new Todo (title, desc, false);
+      //добавляем новый элемент
+      let newItems = this.state.items;
+      newItems.push(newItem);
+      this.setState({allItems: newItems});
+      //скрываем модальное окно
+      this.setState({
+        isOpen: !this.state.isOpen
+      });
+    }
+  }
+  //скрытие модалього окна
+  toggleModal = () => {
+   this.setState({
+     isOpen: !this.state.isOpen
+   });
+  }            
   
   deleteItem = (idx => {
     let newItems = this.state.items;
@@ -59,36 +103,43 @@ class App extends React.Component {
   });
 
    onSetSearch() {
-     let text = document.querySelector('input').value;
-     this.state.searchText = text; 
-     console.log('Set state search = ' + this.state.searchText);
-     
-     //ищем в первоначальном списке
-     let newItems = [];
-     for(let i = 0; i < this.state.allItems.length; i++) {
-       if(this.state.allItems[i].title.toLowerCase().indexOf(this.state.searchText.toLowerCase()) >= 0
+     let text = document.querySelector('.inp_search').value;
+     if (text.length >= 3 || text == '') {
+      this.state.searchText = text; 
+      //ищем в первоначальном списке
+      let newItems = [];
+      for(let i = 0; i < this.state.allItems.length; i++) {
+        if(this.state.allItems[i].title.toLowerCase().indexOf(this.state.searchText.toLowerCase()) >= 0
          || this.state.allItems[i].description.toLowerCase().indexOf(this.state.searchText.toLowerCase()) >= 0){
-        console.log(this.state.allItems[i]);
-        newItems.push(this.state.allItems[i]);
-       }
+          console.log(this.state.allItems[i]);
+          newItems.push(this.state.allItems[i]);
+        }
+      }
+      this.state.items = newItems;
+      this.forceUpdate();
      }
-     console.log(newItems);
-     this.state.items = newItems;
-     this.forceUpdate();
    }
   render() {
     return (
       <div className="todo-list">
          <form>
           <input className="inp_search" type="text" name="name" placeholder="..." />
-         <button type="button" className="button_search" onClick={this.onSetSearch}>Search</button>
+          <button type="button" className="button_search" onClick={this.onSetSearch}>Search</button>
+          <button type="button" className="button_add" onClick={this.toggleModal}> Add new task </button>
         </form>
         <ItemsList
-          items={this.state.items}
-          searchText={this.state.searchText}
-          clickAction={this.deleteItem} />
+           items={this.state.items}
+           searchText={this.state.searchText}
+           clickAction={this.deleteItem} />
+         <Modal 
+           show={this.state.isOpen}
+           addNewTask={this.addNewTask}
+           onClose={this.toggleModal}>
+           <h2>Add new task</h2>
+        </Modal>
       </div>
     );
   }
 }
+
 ReactDOM.render(<App />, document.getElementById('container'));
